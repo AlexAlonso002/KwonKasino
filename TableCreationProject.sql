@@ -69,7 +69,7 @@ CREATE TABLE Customers (
     State CHAR(2),  -- State of the customer
     Postal CHAR(5),  -- Postal code of the customer
     BirthDate DATE,  -- Birth date of the customer
-    WalletID INT,  -- References Wallet.WalletID
+    WalletID INT UNIQUE,  -- References Wallet.WalletID
     Banned BOOLEAN,  -- True if the customer is banned
     FOREIGN KEY (WalletID) REFERENCES Wallet(WalletID)
 );
@@ -99,10 +99,6 @@ CREATE TABLE Support_Tickets (
 -- Table: BannedList
 CREATE TABLE BannedList (
     CustomerID INT PRIMARY KEY,  -- References Customers.CustomerID
-    FirstName VARCHAR(45),  -- Banned customer's first name, references Customers.FirstName
-    MiddleName VARCHAR(45),  -- Banned customer's middle name, references Customers.MiddleName
-    LastName VARCHAR(45),  -- Banned customer's last name, references Customers.LastName
-    PhoneNumber VARCHAR(15),  -- Customer phone number (added as it's not in Customers table)
     FOREIGN KEY (CustomerID) REFERENCES Customers(CustomerID)
 );
 
