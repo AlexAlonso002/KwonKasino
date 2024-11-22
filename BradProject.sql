@@ -21,8 +21,9 @@ CREATE TABLE GameArea (
 -- Table: Wallet
 CREATE TABLE Wallet (
     WalletID INT PRIMARY KEY AUTO_INCREMENT,  -- Unique ID for wallet
-    ChipValue DECIMAL(10,2),  -- Amount of money the person has in casino credit (counted in USD)
-    CardID INT  -- Users can have a casino card that stores credit card info.
+    Balance DECIMAL(10,2) , -- Amount of money the person has in casino credit (counted in USD)
+    BankWireNumber int,
+    CryptoWalletAddress varchar(45)
 );
 
 
@@ -33,7 +34,7 @@ CREATE TABLE Cards (
     CreditCard_LastName VARCHAR(45),  -- Last name on the credit card
     CreditCard_Number VARCHAR(16),  -- Credit card number
     CreditCard_CVS CHAR(3),  -- Credit card security code
-    WalletID int,
+    WalletID int, -- Id of players wallet
     FOREIGN KEY (WalletID) REFERENCES Wallet(WalletID)
 );
 
@@ -45,8 +46,7 @@ CREATE TABLE Employees (
     FirstName VARCHAR(45),  -- First name of the employee
     MiddleName VARCHAR(45),  -- Middle name of the employee
     LastName VARCHAR(45),  -- Last name of the employee
-    StreetNumber VARCHAR(45),  -- Street number of the employee
-    StreetName VARCHAR(45),  -- Street name of the employee
+    Address varchar(45),  -- Address of the employee
     City VARCHAR(45),  -- City of the employee
     State CHAR(2),  -- State of the employee
     Postal CHAR(5),  -- Postal code of the employee
@@ -62,8 +62,6 @@ CREATE TABLE Games (
     AreaID VARCHAR(45),  -- References GameArea.AreaID to determine which section of the casino the game is in
     MinBet INT,  -- Records the minimum bet of the game
     MaxBet INT,  -- Records the maximum bet of the game
-    MoneyIn DECIMAL(10,2),  -- Records total money in, references total Winnings in PlayedGames table
-    MoneyOut DECIMAL(10,2),  -- Records total money out, references total Losings in PlayedGames table
     FOREIGN KEY (AreaID) REFERENCES GameArea(AreaID)
 );
 
@@ -72,11 +70,10 @@ CREATE TABLE Customers (
     CustomerID INT PRIMARY KEY AUTO_INCREMENT,  -- Primary key for customer
     SSN CHAR(9) UNIQUE,  -- Social security number of the customer
     FirstName VARCHAR(45),  -- First name of the customer
-    MiddleName VARCHAR(45),  -- Middle name of the customer
+    MiddleName VARCHAR(45) null,  -- Middle name of the customer
     LastName VARCHAR(45),  -- Last name of the customer
     PhoneNumber VARCHAR(15), -- Phone number of the customer
-    StreetNumber VARCHAR(45),  -- Street number of the customer
-    StreetName VARCHAR(45),  -- Street name of the customer
+    Address varchar(45),  -- Street name of the customer
     City VARCHAR(45),  -- City of the customer
     State CHAR(2),  -- State of the customer
     Postal CHAR(5),  -- Postal code of the customer
@@ -93,8 +90,7 @@ CREATE TABLE PlayedGames (
     GameDate DATE,  -- Date the game was played
     CustomerID INT,  -- References Customers.CustomerID
     Bet INT,  -- Bet made by the customer
-    Winnings INT,  -- Amount won (could be null)
-    Losings INT,  -- Amount lost (could be null)
+	Cashout decimal(10,2), -- How much the bettor made for the game
     FOREIGN KEY (GameID) REFERENCES Games(GameID),
     FOREIGN KEY (CustomerID) REFERENCES Customers(CustomerID)
 );
