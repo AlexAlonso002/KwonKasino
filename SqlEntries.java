@@ -68,15 +68,29 @@ public class SqlEntries {
 	            	    "END;";
 	            
 	            String CallAlexSQl2 = "call Project.MonthlyProfit(2, 2023);" ; 
+
+		  String AlexSQL3 = 
+	            		"CREATE PROCEDURE AutoBan(CustID INT) BEGIN DECLARE Rev INT; " +
+	            		"SELECT SUM(Cashout) - SUM(Bet) INTO Rev FROM PlayedGames WHERE CustomerID = CustID; " +
+	            		"IF Rev > 10000 THEN UPDATE Customers SET Banned = 1 WHERE CustomerID = CustID; END IF; " +
+	            		"END ; "  ;
+	            		
+	            String AlexSQL3p2 = 
+	            	    "CREATE TRIGGER AutoBanSystem AFTER INSERT ON PlayedGames FOR EACH ROW " +
+	            	    "BEGIN " +
+	            	    "CALL AutoBan(NEW.CustomerID); " +
+	            	    "END;" ;
 	            
 	            Statement stmt = conn.createStatement();
 	            boolean result1 = stmt.execute(AlexSQL1);
 	            boolean result2 = stmt.execute(AlexSQL2);
-	            
+	            boolean result3 = stmt.execute(AlexSQL3);
+	            boolean result4 = stmt.execute(AlexSQL3p2);
+			
 	            System.out.println("Procedure Created: " + result1);
 	            
 	            ResultSet rs1 = stmt.executeQuery(CallAlexSQl);
-	            ResultSet rs2 = stmt.executeQuery(CallAlexSQl2);
+	           
 	            
 	            while (rs1.next()) {
 					String SName = rs1.getString("MonthBet");
@@ -85,6 +99,8 @@ public class SqlEntries {
 
 					System.out.println("Month Bet: " + SName + "\n" + "Month CashOut: " + SID + "\n" + "Month Revenue " + SID2 + "\n");
 				}
+			
+		   ResultSet rs2 = stmt.executeQuery(CallAlexSQl2);
 	            while (rs2.next()) {
 					String Profit = rs2.getString("Profit");
 
