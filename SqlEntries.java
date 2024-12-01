@@ -32,7 +32,7 @@ public class SqlEntries {
 	                            "    SELECT MonthBet , MonthCashout , MonthRevenue ; " +
 	                            "END;";
 	            
-	            String CallAlexSQl = "call Project.Taxforms(2002, 2023,1); " ;
+	            String CallAlexSQl = "call Project.Taxforms(15, 2024,4); " ;
 	            
 	            String AlexSQL2 = 
 	            	    "CREATE PROCEDURE MonthlyProfit(IN Month2 INT, IN DateYear INT) " +
@@ -67,7 +67,7 @@ public class SqlEntries {
 	            	    "    SELECT Profit; " +
 	            	    "END;";
 	            
-	            String CallAlexSQl2 = "call Project.MonthlyProfit(2, 2023);" ; 
+	            String CallAlexSQl2 = "call Project.MonthlyProfit(2, 2024);" ; 
 
 		  String AlexSQL3 = 
 	            		"CREATE PROCEDURE AutoBan(CustID INT) BEGIN DECLARE Rev INT; " +
