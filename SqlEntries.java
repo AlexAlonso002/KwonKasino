@@ -10,7 +10,7 @@ public class SqlEntries {
 
 	        try {
 	            // 1. Driver Loading and DB connection							schema name	change user name and pw
-	            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/Project", "root", "Insert PW");
+	            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/Project", "root", "0Cyclone6!");
 	            System.out.println("DB connection successful");
 	            
 	            String AlexSQL1 =
@@ -32,7 +32,7 @@ public class SqlEntries {
 	                            "    SELECT MonthBet , MonthCashout , MonthRevenue ; " +
 	                            "END;";
 	            
-	            String CallAlexSQl = "call Project.Taxforms(15, 2024,4); " ;
+	            String CallAlexSQl = "call Project.Taxforms(2002, 2023,1); " ;
 	            
 	            String AlexSQL2 = 
 	            	    "CREATE PROCEDURE MonthlyProfit(IN Month2 INT, IN DateYear INT) " +
@@ -67,7 +67,7 @@ public class SqlEntries {
 	            	    "    SELECT Profit; " +
 	            	    "END;";
 	            
-	            String CallAlexSQl2 = "call Project.MonthlyProfit(2, 2024);" ; 
+	            String CallAlexSQl2 = "call Project.MonthlyProfit(2, 2023);" ; 
 
 		  String AlexSQL3 = 
 	            		"CREATE PROCEDURE AutoBan(CustID INT) BEGIN DECLARE Rev INT; " +
