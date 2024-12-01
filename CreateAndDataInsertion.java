@@ -424,7 +424,7 @@ public class CreateAndDataInsertion {
             }
             for (int i = 0; i < InsertData.length; i++) {
                 boolean result2 = stmt.execute(InsertData[i]);
-                System.out.println("Table creation " + (i + 1) + " result: " + result2);
+                System.out.println("Data Inserted " + (i + 1) + " result: " + result2);
             }
             
 	        if (stmt != null) {
