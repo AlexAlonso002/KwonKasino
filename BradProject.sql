@@ -32,8 +32,8 @@ CREATE TABLE Cards (
     CardID INT PRIMARY KEY AUTO_INCREMENT,  -- Unique ID of the casino card
     CreditCard_FirstName VARCHAR(45),  -- First name on the credit card
     CreditCard_LastName VARCHAR(45),  -- Last name on the credit card
-    CreditCard_Number VARCHAR(16) not null,  -- Credit card number
-    CreditCard_CVS CHAR(3) not null,  -- Credit card security code
+    CreditCard_Number VARCHAR(16),  -- Credit card number
+    CreditCard_CVS CHAR(3),  -- Credit card security code
     WalletID int, -- Id of players wallet
     FOREIGN KEY (WalletID) REFERENCES Wallet(WalletID)
 );
@@ -42,7 +42,7 @@ CREATE TABLE Cards (
 -- Table: Employees
 CREATE TABLE Employees (
     EmployeeID INT PRIMARY KEY AUTO_INCREMENT,  -- Changed to INT and auto-increment for primary key
-    SSN CHAR(9) UNIQUE not null,  -- SSN of the employee
+    SSN CHAR(9) UNIQUE,  -- SSN of the employee
     FirstName VARCHAR(45),  -- First name of the employee
     MiddleName VARCHAR(45),  -- Middle name of the employee
     LastName VARCHAR(45),  -- Last name of the employee
@@ -50,7 +50,7 @@ CREATE TABLE Employees (
     City VARCHAR(45),  -- City of the employee
     State CHAR(2),  -- State of the employee
     Postal CHAR(5),  -- Postal code of the employee
-    BirthDate DATE not null,  -- Birth date of the employee
+    BirthDate DATE,  -- Birth date of the employee
     AreaID VARCHAR(45),  -- Area the employee works in, references GameArea.AreaID
     FOREIGN KEY (AreaID) REFERENCES GameArea(AreaID)
 );
@@ -68,7 +68,7 @@ CREATE TABLE Games (
 -- Table: Customers
 CREATE TABLE Customers (
     CustomerID INT PRIMARY KEY AUTO_INCREMENT,  -- Primary key for customer
-    SSN CHAR(9) UNIQUE not null,  -- Social security number of the customer
+    SSN CHAR(9) UNIQUE,  -- Social security number of the customer
     FirstName VARCHAR(45),  -- First name of the customer
     MiddleName VARCHAR(45) null,  -- Middle name of the customer
     LastName VARCHAR(45),  -- Last name of the customer
@@ -77,7 +77,7 @@ CREATE TABLE Customers (
     City VARCHAR(45),  -- City of the customer
     State CHAR(2),  -- State of the customer
     Postal CHAR(5),  -- Postal code of the customer
-    BirthDate DATE not null,  -- Birth date of the customer
+    BirthDate DATE,  -- Birth date of the customer
     WalletID INT UNIQUE,  -- References Wallet.WalletID
     Banned BOOLEAN,  -- True if the customer is banned
     FOREIGN KEY (WalletID) REFERENCES Wallet(WalletID)
@@ -106,6 +106,15 @@ CREATE TABLE Support_Tickets (
 	FOREIGN KEY (EmployeeHelper) REFERENCES Employees(EmployeeID) 
     
 );
+
+CREATE TABLE PhysicalMailQueue (
+    QueueID INT AUTO_INCREMENT PRIMARY KEY,         -- Unique identifier for each mail in the queue
+    CustomerID INT NOT NULL,                        -- ID of the customer the mail is associated with
+    Address VARCHAR(255) NULL,                   -- The full address for physical mail delivery
+    Subject VARCHAR(255) NOT NULL,                   -- Subject of the letter or the purpose of the mail
+    Body TEXT NOT NULL                              -- The content/body of the letter
+);
+
 
 
 
