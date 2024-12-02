@@ -1,6 +1,7 @@
-/*Chris Sotirovski
- * Sql #1 #2 #3
- * 11/29/2025
+*Chris Sotirovski
+ * Below are my 3 SQL Queries For the final Database Project
+ * The date is 11/29/2025
+ * I left comments above each query explaining what each of them do
  */
 import java.sql.*;
 
@@ -8,7 +9,7 @@ public class Chris__SQL {
     public static void main(String[] args) {
     	/*
 	-- 1: This is a stored procedure with an input parameter to find banned or unbanned customers.
-	-- Say we have a promblem where a customer that wants to join our Casino, but they look/sound fimilar 
+	-- Say we have a problem where a customer that wants to join our Casino, but they look/sound fimilar 
 	-- we can simply pull up the records of all the banned customers to see if they are on that list
  	*/   // here is the procedure
         String createProcedure = 
@@ -53,7 +54,7 @@ public class Chris__SQL {
             e.printStackTrace();
         }
        
-      //-- 2: Find out who won the most amount of money on each game by inputing the game in the parameter 
+      //-- 2: This is a stored procedure to find out who won the most amount of money on each game by inputing the game in the parameter 
       //-- this way, we can see if that player is taking too much money from us and then we will have the choice to ban them
       //-- because if they are winning more than what they are spending, we are losing money, which is bad
       //-- we have the right to ban anyone we want without notice or explanation 
@@ -101,11 +102,11 @@ public class Chris__SQL {
             e.printStackTrace(); 
         }
         
-        // 3: Say we want to ban all previous players of a game to give new players spots to play
-        // We can ban everyone that is playing that game
+        // 3: this is a stored procedure- Say we want to ban all previous players of a game to give new players spots to play
+        // We can ban everyone that has played that game
         // All we have to do is input the game, and everyone thats played the game before gets banned
         
-        String gameName = "Poker Classic"; // Put the game name here, and after running it, everyone that is playing this games gets banned
+        String gameName = "Poker Classic"; // Put the game name here, and after running it, everyone that has played this games gets banned
 
         
         String createProcedureSQL1 = 
@@ -150,4 +151,5 @@ public class Chris__SQL {
     
     
 }
+
 
