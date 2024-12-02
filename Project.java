@@ -3,7 +3,7 @@ import java.sql.DriverManager;
 import java.sql.Statement;
 import java.sql.ResultSet;
 
-public class Project {
+public class AgustinSQL {
 
     public static void main(String[] args) {
         // Database connection details
