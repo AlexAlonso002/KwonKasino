@@ -1,4 +1,4 @@
-*Chris Sotirovski
+/*Chris Sotirovski
  * Below are my 3 SQL Queries For the final Database Project
  * The date is 11/29/2025
  * I left comments above each query explaining what each of them do
