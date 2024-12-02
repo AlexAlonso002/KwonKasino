@@ -3,7 +3,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
-public class SqlEntries {
+public class AlexAndBradSqlEntries {
 
 	public static void main(String[] args) {
 		 Connection conn ;
